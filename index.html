@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wordbold</title>
+  <style>
+    strong {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+    <div id="content"></div>
+
+    <script>
+      function makeFirstLettersBold(text) {
+        const words = text.split(' ');
+        const boldedWords = words.map(word => {
+          const length = word.length;
+          let boldLength = 0;
+
+          if (length <= 4) {
+            boldLength = 2;
+          } else if (length <= 7) {
+            boldLength = 4;
+          } else {
+            boldLength = 6;
+          }
+
+          const boldPart = word.slice(0, boldLength);
+          const remainingPart = word.slice(boldLength);
+          return `<strong>${boldPart}</strong>${remainingPart}`;
+        });
+
+        return boldedWords.join(' ');
+      }
+
+      const inputText = "This is a sample text with different word lengths followed by some other random words I am trying to think of right now but it is weekend and I will take my bike for a ride to the beach now. Have a nice day everyone.";
+      const outputText = makeFirstLettersBold(inputText);
+      document.getElementById("content").innerHTML = outputText;
+    </script>
+</body>
+</html>
